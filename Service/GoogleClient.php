@@ -73,7 +73,7 @@ class GoogleClient
     /**
      * Get analytics
      */
-    public function analytic()
+    public function analytics()
     {
         return new \Google_Service_AnalyticsReporting($this->getClient());
     }
