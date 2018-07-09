@@ -25,6 +25,7 @@ class GoogleApiClientPhpExtension extends Extension
         $container->setParameter('google_api_client_php.credential_file', $config['credential_file']);
         $container->setParameter('google_api_client_php.application_name', $config['application_name']);
         $container->setParameter('google_api_client_php.analytics_view_id', $config['analytics_view_id']);
+        $container->setParameter('google_api_client_php.scopes', $config['scopes']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

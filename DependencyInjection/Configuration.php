@@ -4,6 +4,7 @@ namespace Samiax\GoogleApiClientPhpBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 /**
  * This is the class that validates and merges configuration from your app/config files.
@@ -25,6 +26,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('credential_file')->end()
                 ->scalarNode('application_name')->end()
                 ->scalarNode('analytics_view_id')->end()
+                ->append($this->getScopes())
             ->end()
         ;
 
@@ -33,5 +35,14 @@ class Configuration implements ConfigurationInterface
         // more information on that topic.
 
         return $treeBuilder;
+    }
+
+    private function getScopes()
+    {
+        $node = new ArrayNodeDefinition('scopes');
+
+        $node->prototype('scalar')->end();
+
+        return $node;
     }
 }

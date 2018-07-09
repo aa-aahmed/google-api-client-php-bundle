@@ -1,4 +1,13 @@
 services:
-#    google_api_client_php.example:
-#        class: Samiax\GoogleApiClientPhpBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    google_api_client_php.config:
+        class: Samiax\GoogleApiClientPhpBundle\Service\Config
+        calls:
+            - [setCredentialFile,   [%google_api_client_php.credential_file%]]
+            - [setApplicationName,  [%google_api_client_php.application_name%]]
+            - [setAnalyticsViewId,  [%google_api_client_php.analytics_view_id%]]
+            - [setScopes,           [%google_api_client_php.scopes%]]
+
+    google_api_client_php.google_client:
+        class: Samiax\GoogleApiClientPhpBundle\Service\GoogleClient
+        arguments:
+            - '@google_api_client_php.config'
