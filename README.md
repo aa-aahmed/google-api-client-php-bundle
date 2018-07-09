@@ -67,5 +67,5 @@ $request->setMetrics([$sessions]);
 $body = new \Google_Service_AnalyticsReporting_GetReportsRequest();
 $body->setReportRequests([$request]);
 
-$analytics->reports->batchGet($body)->getReports()[0]->getData()->getTotals()[0]->getValues()[0];
+echo $analytics->reports->batchGet($body)->getReports()[0]->getData()->getTotals()[0]->getValues()[0];
 ```
