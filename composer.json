@@ -1,0 +1,30 @@
+{
+    "name": "samiaraboglu/google-api-client-php-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony Google Api Client Bundle",
+    "keywords": ["symfony", "symfony-bundle", "api", "google", "google-api", "google-analytics"],
+    "homepage": "https://github.com/samiaraboglu/google-api-client-php-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+          "name": "Sami Araboğlu",
+          "email": "samiaraboglu@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "symfony/framework-bundle": "~3.0",
+        "google/apiclient": "^2.0"
+    },
+    "require-dev": {
+
+    },
+    "suggest": {
+
+    },
+    "autoload": {
+        "psr-4": {
+            "Samiax\\GoogleApiClientPhpBundle\\": ""
+        }
+    }
+}
