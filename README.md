@@ -20,7 +20,7 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             // ...
-            new Samiax\GoogleApiBundle\GoogleApiBundle(),
+            new Samiax\GoogleApiBundle\SamiaxGoogleApiBundle(),
         );
         // ...
     }
