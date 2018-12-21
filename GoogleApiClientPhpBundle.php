@@ -1,9 +1,9 @@
 <?php
 
-namespace Samiax\GoogleApiClientPhpBundle;
+namespace Samiax\GoogleApiBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class GoogleApiClientPhpBundle extends Bundle
+class GoogleApiBundle extends Bundle
 {
 }

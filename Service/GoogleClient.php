@@ -1,6 +1,6 @@
 <?php
 
-namespace Samiax\GoogleApiClientPhpBundle\Service;
+namespace Samiax\GoogleApiBundle\Service;
 
 class GoogleClient
 {

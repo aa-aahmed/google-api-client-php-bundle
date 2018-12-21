@@ -1,6 +1,6 @@
 <?php
 
-namespace Samiax\GoogleApiClientPhpBundle\DependencyInjection;
+namespace Samiax\GoogleApiBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -22,10 +22,10 @@ class GoogleApiClientPhpExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('google_api_client_php.credential_file', $config['credential_file']);
-        $container->setParameter('google_api_client_php.application_name', $config['application_name']);
-        $container->setParameter('google_api_client_php.analytics_view_id', $config['analytics_view_id']);
-        $container->setParameter('google_api_client_php.scopes', $config['scopes']);
+        $container->setParameter('samiax_google_api.credential_file', $config['credential_file']);
+        $container->setParameter('samiax_google_api.application_name', $config['application_name']);
+        $container->setParameter('samiax_google_api.analytics_view_id', $config['analytics_view_id']);
+        $container->setParameter('samiax_google_api.scopes', $config['scopes']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

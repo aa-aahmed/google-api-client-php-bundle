@@ -20,7 +20,7 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             // ...
-            new Samiax\GoogleApiClientPhpBundle\GoogleApiClientPhpBundle(),
+            new Samiax\GoogleApiBundle\GoogleApiBundle(),
         );
         // ...
     }
@@ -32,7 +32,7 @@ class AppKernel extends Kernel
 Add this to config.yml:
 
 ```yaml
-google_api_client_php:
+samiax_google_api:
     credential_file:    "%kernel.root_dir%/config/google-api-client-php/client_credentials.json"
     application_name:   "APPLICATION_NAME"
     analytics_view_id:  "ANALYTICS_VIEW_ID"
@@ -43,7 +43,7 @@ google_api_client_php:
 Get the session count from google analytics.
 
 ```php
-$service = $this->get('google_api_client_php.google_client');
+$service = $this->get('samiax_google_api.google_client');
 
 $viewId = $service->getConfig()->getAnalyticsViewId();
 $analytics = $service->analytics();

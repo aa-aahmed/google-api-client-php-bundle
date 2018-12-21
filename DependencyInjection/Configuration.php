@@ -1,6 +1,6 @@
 <?php
 
-namespace Samiax\GoogleApiClientPhpBundle\DependencyInjection;
+namespace Samiax\GoogleApiBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('google_api_client_php');
+        $rootNode = $treeBuilder->root('samiax_google_api');
 
         $rootNode
             ->children()
