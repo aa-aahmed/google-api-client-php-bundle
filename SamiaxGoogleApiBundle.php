@@ -4,6 +4,6 @@ namespace Samiax\GoogleApiBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class GoogleApiBundle extends Bundle
+class SamiaxGoogleApiBundle extends Bundle
 {
 }
