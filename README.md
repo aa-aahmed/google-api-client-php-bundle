@@ -43,9 +43,11 @@ Get the session count from google analytics.
 ```php
 $service = $this->get('samiax_google_api.google_client');
 
-$service->getGoogleClient()->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
+$googleClient = $service->getGoogleClient();
 
-$viewId = "{VIEW_ID}";
+$googleClient->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
+
+$viewId = "92390845";
 $analytics = $service->analytics();
 
 // Create the DateRange object.
@@ -68,4 +70,6 @@ $body = new \Google_Service_AnalyticsReporting_GetReportsRequest();
 $body->setReportRequests([$request]);
 
 echo $analytics->reports->batchGet($body)->getReports()[0]->getData()->getTotals()[0]->getValues()[0];
+
+return new Response();
 ```
