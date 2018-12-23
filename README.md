@@ -53,8 +53,6 @@ public function googleAnalyticsAction(Request $request)
 
     $analytics = $service->analytics();
 
-    $viewId = "{VIEW_ID}";
-
     // Create the DateRange object.
     $dateRange = new \Google_Service_AnalyticsReporting_DateRange();
     $dateRange->setStartDate("1daysAgo");
@@ -67,7 +65,7 @@ public function googleAnalyticsAction(Request $request)
 
     // Create the ReportRequest object.
     $request = new \Google_Service_AnalyticsReporting_ReportRequest();
-    $request->setViewId($viewId);
+    $request->setViewId("{VIEW_ID}");
     $request->setDateRanges($dateRange);
     $request->setMetrics([$sessions]);
 
@@ -125,11 +123,9 @@ public function googleContentAction()
     $googleClient = $service->getGoogleClient();
     $googleClient->setAccessToken($accessToken);
 
-    $content = $service->shoppingContent();
+    $shoppingContent = $service->shoppingContent();
 
-    $merchantId = {MERCHANT_ID};
-
-    $products = $content->products->listProducts($merchantId);
+    $products = $shoppingContent->products->listProducts({MERCHANT_ID});
 
     var_dump($products);
 
