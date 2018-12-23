@@ -47,8 +47,9 @@ $googleClient = $service->getGoogleClient();
 
 $googleClient->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
 
-$viewId = "92390845";
 $analytics = $service->analytics();
+
+$viewId = "{VIEW_ID}";
 
 // Create the DateRange object.
 $dateRange = new \Google_Service_AnalyticsReporting_DateRange();
