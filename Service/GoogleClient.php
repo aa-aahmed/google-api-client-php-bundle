@@ -70,10 +70,18 @@ class GoogleClient
     }
 
     /**
-     * Get analytics
+     * Get analytics service
      */
     public function analytics()
     {
         return new \Google_Service_AnalyticsReporting($this->getGoogleClient());
+    }
+
+    /**
+     * Get shopping content service
+     */
+    public function shoppingContent()
+    {
+        return new \Google_Service_ShoppingContent($this->getGoogleClient());
     }
 }
