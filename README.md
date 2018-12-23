@@ -37,40 +37,102 @@ samiax_google_api:
     application_name:   "APPLICATION_NAME"
 ```
 
-### Example
+### Example 1 - Google Analytics
 Get the session count from google analytics.
 
 ```php
-$service = $this->get('samiax_google_api.google_client');
+/**
+ * @Route("/google/analytics", name="google_analytics")
+ */
+public function googleAnalyticsAction(Request $request)
+{
+    $service = $this->get('samiax_google_api.google_client');
 
-$googleClient = $service->getGoogleClient();
+    $googleClient = $service->getGoogleClient();
+    $googleClient->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
 
-$googleClient->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
+    $analytics = $service->analytics();
 
-$analytics = $service->analytics();
+    $viewId = "{VIEW_ID}";
 
-$viewId = "{VIEW_ID}";
+    // Create the DateRange object.
+    $dateRange = new \Google_Service_AnalyticsReporting_DateRange();
+    $dateRange->setStartDate("1daysAgo");
+    $dateRange->setEndDate("1daysAgo");
 
-// Create the DateRange object.
-$dateRange = new \Google_Service_AnalyticsReporting_DateRange();
-$dateRange->setStartDate("1daysAgo");
-$dateRange->setEndDate("1daysAgo");
+    // Create the Metrics object.
+    $sessions = new \Google_Service_AnalyticsReporting_Metric();
+    $sessions->setExpression("ga:sessions");
+    $sessions->setAlias("sessions");
 
-// Create the Metrics object.
-$sessions = new \Google_Service_AnalyticsReporting_Metric();
-$sessions->setExpression("ga:sessions");
-$sessions->setAlias("sessions");
+    // Create the ReportRequest object.
+    $request = new \Google_Service_AnalyticsReporting_ReportRequest();
+    $request->setViewId($viewId);
+    $request->setDateRanges($dateRange);
+    $request->setMetrics([$sessions]);
 
-// Create the ReportRequest object.
-$request = new \Google_Service_AnalyticsReporting_ReportRequest();
-$request->setViewId($viewId);
-$request->setDateRanges($dateRange);
-$request->setMetrics([$sessions]);
+    $body = new \Google_Service_AnalyticsReporting_GetReportsRequest();
+    $body->setReportRequests([$request]);
 
-$body = new \Google_Service_AnalyticsReporting_GetReportsRequest();
-$body->setReportRequests([$request]);
+    echo $analytics->reports->batchGet($body)->getReports()[0]->getData()->getTotals()[0]->getValues()[0];
 
-echo $analytics->reports->batchGet($body)->getReports()[0]->getData()->getTotals()[0]->getValues()[0];
+    return new Response();
+}
+```
 
-return new Response();
+### Example 2 - Google Product Feed
+Get the product feeds.
+
+```php
+/**
+ * @Route("/google/content/auth", name="google_content_auth")
+ */
+public function googleContentAuthAction(Request $request)
+{
+    $service = $this->get('samiax_google_api.google_client');
+
+    $googleClient = $service->getGoogleClient();
+    $googleClient->setRedirectUri($request->getSchemeAndHttpHost() . $request->getBaseUrl() . $request->getPathInfo());
+    $googleClient->setScopes('https://www.googleapis.com/auth/content');
+
+    if ($request->query->get('code')) {
+        $googleClient->authenticate($request->query->get('code'));
+
+        $session = $this->container->get('session');
+        $session->set('google_content_access_token', $googleClient->getAccessToken());
+
+        return $this->redirect(filter_var($this->generateUrl('google_content'), FILTER_SANITIZE_URL));
+    }
+
+    return $this->redirect($googleClient->createAuthUrl());
+}
+
+/**
+ * @Route("/google/content", name="google_content")
+ */
+public function googleContentAction()
+{
+    $session = $this->container->get('session');
+
+    $accessToken = $session->get('google_content_access_token');
+
+    if (!$accessToken) {
+        return $this->redirect($this->generateUrl('google_content_auth'));
+    }
+
+    $service = $this->get('samiax_google_api.google_client');
+
+    $googleClient = $service->getGoogleClient();
+    $googleClient->setAccessToken($accessToken);
+
+    $content = $service->shoppingContent();
+
+    $merchantId = {MERCHANT_ID};
+
+    $products = $content->products->listProducts($merchantId);
+
+    var_dump($products);
+
+    return new Response();
+}
 ```
