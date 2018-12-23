@@ -4,8 +4,6 @@ services:
         calls:
             - [setCredentialFile,   [%samiax_google_api.credential_file%]]
             - [setApplicationName,  [%samiax_google_api.application_name%]]
-            - [setAnalyticsViewId,  [%samiax_google_api.analytics_view_id%]]
-            - [setScopes,           [%samiax_google_api.scopes%]]
 
     samiax_google_api.google_client:
         class: Samiax\GoogleApiBundle\Service\GoogleClient

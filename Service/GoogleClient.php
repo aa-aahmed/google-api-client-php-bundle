@@ -12,7 +12,7 @@ class GoogleClient
     /**
      * @var string
      */
-    protected $client;
+    protected $googleClient;
 
     /**
      * Set config
@@ -35,23 +35,23 @@ class GoogleClient
     }
 
     /**
-     * Set client
+     * Set google client
      *
-     * @param string $client
+     * @param string $googleClient
      */
-    public function setClient($client)
+    public function setGoogleClient($googleClient)
     {
-        $this->client = $client;
+        $this->googleClient = $googleClient;
     }
 
     /**
-     * Get client
+     * Get google client
      *
      * @return string
      */
-    public function getClient()
+    public function getGoogleClient()
     {
-        return $this->client;
+        return $this->googleClient;
     }
 
     /**
@@ -61,13 +61,12 @@ class GoogleClient
      */
     public function __construct(Config $config)
     {
-        $client = new \Google_Client();
-        $client->setApplicationName($config->getApplicationName());
-        $client->setAuthConfig($config->getCredentialFile());
-        $client->setScopes($config->getScopes());
+        $googleClient = new \Google_Client();
+        $googleClient->setApplicationName($config->getApplicationName());
+        $googleClient->setAuthConfig($config->getCredentialFile());
 
         $this->setConfig($config);
-        $this->setClient($client);
+        $this->setGoogleClient($googleClient);
     }
 
     /**
@@ -75,6 +74,6 @@ class GoogleClient
      */
     public function analytics()
     {
-        return new \Google_Service_AnalyticsReporting($this->getClient());
+        return new \Google_Service_AnalyticsReporting($this->getGoogleClient());
     }
 }

@@ -35,8 +35,6 @@ Add this to config.yml:
 samiax_google_api:
     credential_file:    "%kernel.root_dir%/config/google-api-client-php/client_credentials.json"
     application_name:   "APPLICATION_NAME"
-    analytics_view_id:  "ANALYTICS_VIEW_ID"
-    scopes:             ['https://www.googleapis.com/auth/analytics.readonly']
 ```
 
 ### Example
@@ -45,7 +43,9 @@ Get the session count from google analytics.
 ```php
 $service = $this->get('samiax_google_api.google_client');
 
-$viewId = $service->getConfig()->getAnalyticsViewId();
+$service->getGoogleClient()->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
+
+$viewId = "{VIEW_ID}";
 $analytics = $service->analytics();
 
 // Create the DateRange object.

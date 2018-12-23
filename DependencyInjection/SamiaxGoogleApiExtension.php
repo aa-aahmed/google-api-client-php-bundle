@@ -24,8 +24,6 @@ class SamiaxGoogleApiExtension extends Extension
 
         $container->setParameter('samiax_google_api.credential_file', $config['credential_file']);
         $container->setParameter('samiax_google_api.application_name', $config['application_name']);
-        $container->setParameter('samiax_google_api.analytics_view_id', $config['analytics_view_id']);
-        $container->setParameter('samiax_google_api.scopes', $config['scopes']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

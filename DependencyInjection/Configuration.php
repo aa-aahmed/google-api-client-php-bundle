@@ -25,8 +25,6 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('credential_file')->end()
                 ->scalarNode('application_name')->end()
-                ->scalarNode('analytics_view_id')->end()
-                ->append($this->getScopes())
             ->end()
         ;
 
@@ -35,14 +33,5 @@ class Configuration implements ConfigurationInterface
         // more information on that topic.
 
         return $treeBuilder;
-    }
-
-    private function getScopes()
-    {
-        $node = new ArrayNodeDefinition('scopes');
-
-        $node->prototype('scalar')->end();
-
-        return $node;
     }
 }
