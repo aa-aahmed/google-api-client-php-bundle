@@ -84,4 +84,12 @@ class GoogleClient
     {
         return new \Google_Service_ShoppingContent($this->getGoogleClient());
     }
+
+    /**
+     * Get youtube service
+     */
+    public function youtube()
+    {
+        return new \Google_Service_YouTube($this->getGoogleClient());
+    }
 }
