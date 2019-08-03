@@ -1,5 +1,9 @@
 # google-api-client-php-bundle
 
+[![Latest Stable Version](https://poser.pugx.org/samiaraboglu/google-api-client-php-bundle/v/stable)](https://packagist.org/packages/samiaraboglu/google-api-client-php-bundle)
+[![Total Downloads](https://poser.pugx.org/samiaraboglu/google-api-client-php-bundle/downloads)](https://packagist.org/packages/samiaraboglu/google-api-client-php-bundle)
+[![License](https://poser.pugx.org/samiaraboglu/google-api-client-php-bundle/license)](https://packagist.org/packages/samiaraboglu/google-api-client-php-bundle)
+
 Use the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 
 ### Download the Bundle
