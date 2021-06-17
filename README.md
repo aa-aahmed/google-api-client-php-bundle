@@ -1,4 +1,4 @@
-# google-api-client-php-bundle
+# google-api-client-php-bundle Symfony 5.2
 
 [![Latest Stable Version](https://poser.pugx.org/samiaraboglu/google-api-client-php-bundle/v/stable)](https://packagist.org/packages/samiaraboglu/google-api-client-php-bundle)
 [![Total Downloads](https://poser.pugx.org/samiaraboglu/google-api-client-php-bundle/downloads)](https://packagist.org/packages/samiaraboglu/google-api-client-php-bundle)
