@@ -18,16 +18,13 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-         $treeBuilder = new TreeBuilder('samiax_google_api');
-         $rootNode = $rootNode
+        $treeBuilder = new TreeBuilder('samiax_google_api');
+        $rootNode = $treeBuilder->getRootNode();
+        $rootNode
             ->children()
-                ->scalarNode('credential_file')->end()
-                ->scalarNode('application_name')->end()
-            ->end()
-        ;
-
-        $this->addHostedSection($rootNode);
-
-        return $treeBuilder;    
+            ->scalarNode('credential_file')->end()
+            ->scalarNode('application_name')->end()
+            ->end();
+        return $treeBuilder;
     }
 }
