@@ -16,14 +16,23 @@ class Configuration implements ConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function getConfigTreeBuilder()
+     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder('samiax_google_api');
-        $rootNode = $treeBuilder->getRootNode();
+        $rootNode = method_exists($treeBuilder, 'getRootNode')
+            ? $treeBuilder->getRootNode()
+            : $treeBuilder->root('samiax_google_api');
+
         $rootNode
             ->children()
-            ->scalarNode('credential_file')->end()
-            ->scalarNode('application_name')->end()
+                ->scalarNode('credential_file')
+                    ->defaultNull()
+                    ->info('Service id of HTTP client to use (must implement GuzzleHttp\ClientInterface)')
+                ->end()
+                ->scalarNode('application_name')
+                    ->defaultNull()
+                    ->info('Service id of HTTP client to use (must implement GuzzleHttp\ClientInterface)')
+                ->end()
             ->end();
         return $treeBuilder;
     }
