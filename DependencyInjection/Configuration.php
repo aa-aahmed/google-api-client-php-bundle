@@ -18,20 +18,16 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('samiax_google_api');
-
-        $rootNode
+         $treeBuilder = new TreeBuilder('samiax_google_api');
+         $rootNode = $rootNode
             ->children()
                 ->scalarNode('credential_file')->end()
                 ->scalarNode('application_name')->end()
             ->end()
         ;
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $this->addHostedSection($rootNode);
 
-        return $treeBuilder;
+        return $treeBuilder;    
     }
 }
