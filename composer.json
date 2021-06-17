@@ -1,5 +1,5 @@
 {
-    "name": "samiaraboglu/google-api-client-php-bundle",
+    "name": "aahmed/google-api-client-php-bundle",
     "type": "symfony-bundle",
     "description": "Symfony Google Api Client Bundle",
     "keywords": ["symfony", "symfony-bundle", "api", "google", "google-api", "google-analytics"],
@@ -7,13 +7,13 @@
     "license": "MIT",
     "authors": [
         {
-          "name": "Sami Araboğlu",
-          "email": "samiaraboglu@gmail.com"
+          "name": "Ahmed Ateeq",
+          "email": "ahmed@on5.io"
         }
     ],
     "require": {
         "php": ">=5.5",
-        "symfony/framework-bundle": "~3.0",
+        "symfony/framework-bundle": "5.2.*",
         "google/apiclient": "^2.0"
     },
     "require-dev": {
