@@ -2,8 +2,8 @@ services:
     samiax_google_api.config:
         class: Samiax\GoogleApiBundle\Service\Config
         calls:
-            - [setCredentialFile,   [%samiax_google_api.credential_file%]]
-            - [setApplicationName,  [%samiax_google_api.application_name%]]
+            - [setCredentialFile,   [samiax_google_api.credential_file]]
+            - [setApplicationName,  [samiax_google_api.application_name]]
 
     samiax_google_api.google_client:
         class: Samiax\GoogleApiBundle\Service\GoogleClient
